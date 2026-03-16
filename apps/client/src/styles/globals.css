@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light theme — monochromatic scale */
+    --background: 0 0% 98%;           /* gray-50 ~ #f9fafb */
+    --foreground: 224 71% 4%;         /* gray-950 ~ #030712 */
+
+    --card: 0 0% 100%;                /* white */
+    --card-foreground: 224 71% 4%;    /* gray-950 */
+
+    --muted: 220 14% 96%;             /* gray-100 ~ #f3f4f6 */
+    --muted-foreground: 220 9% 46%;   /* gray-500 ~ #6b7280 */
+
+    --border: 220 13% 91%;            /* gray-200 ~ #e5e7eb */
+    --input: 220 13% 91%;             /* gray-200 */
+
+    --ring: 224 71% 4%;               /* gray-950 */
+
+    --primary: 224 71% 4%;            /* gray-950 */
+    --primary-foreground: 0 0% 98%;   /* gray-50 */
+
+    --secondary: 220 14% 96%;         /* gray-100 */
+    --secondary-foreground: 221 39% 11%; /* gray-900 ~ #111827 */
+
+    --accent: 220 14% 96%;            /* gray-100 */
+    --accent-foreground: 221 39% 11%; /* gray-900 */
+
+    --destructive: 221 39% 11%;       /* gray-900 */
+    --destructive-foreground: 0 0% 98%; /* gray-50 */
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Dark theme — monochromatic scale */
+    --background: 224 71% 4%;         /* gray-950 ~ #030712 */
+    --foreground: 0 0% 98%;           /* gray-50 ~ #f9fafb */
+
+    --card: 221 39% 11%;              /* gray-900 ~ #111827 */
+    --card-foreground: 0 0% 98%;      /* gray-50 */
+
+    --muted: 215 28% 17%;             /* gray-800 ~ #1f2937 */
+    --muted-foreground: 218 11% 65%;  /* gray-400 ~ #9ca3af */
+
+    --border: 215 28% 17%;            /* gray-800 */
+    --input: 215 28% 17%;             /* gray-800 */
+
+    --ring: 213 27% 84%;              /* gray-300 ~ #d1d5db */
+
+    --primary: 0 0% 98%;              /* gray-50 */
+    --primary-foreground: 224 71% 4%; /* gray-950 */
+
+    --secondary: 215 28% 17%;         /* gray-800 */
+    --secondary-foreground: 220 14% 96%; /* gray-100 */
+
+    --accent: 215 28% 17%;            /* gray-800 */
+    --accent-foreground: 220 14% 96%; /* gray-100 */
+
+    --destructive: 213 27% 84%;       /* gray-300 */
+    --destructive-foreground: 224 71% 4%; /* gray-950 */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

@@ -1,0 +1,77 @@
+networks:
+  talentsync-infra:
+    external: true
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: apps/server/Dockerfile
+      target: production
+    container_name: uptime-api-stage
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - MONGODB_URI=${MONGODB_URI:-mongodb://mongo:27017/uptimemonitor-stage}
+      - REDIS_URI=${REDIS_URI:-redis://redis:6379}
+      - JWT_ACCESS_SECRET=${JWT_ACCESS_SECRET}
+      - JWT_REFRESH_SECRET=${JWT_REFRESH_SECRET}
+      - JWT_ACCESS_EXPIRY=${JWT_ACCESS_EXPIRY:-15m}
+      - JWT_REFRESH_EXPIRY=${JWT_REFRESH_EXPIRY:-7d}
+      - CORS_ORIGIN=${CORS_ORIGIN:-https://uptime-stage.yourdomain.com}
+      - APP_URL=${APP_URL:-https://uptime-stage.yourdomain.com}
+      - RESEND_API_KEY=${RESEND_API_KEY}
+      - RESEND_FROM_EMAIL=${RESEND_FROM_EMAIL:-contact@yourdomain.com}
+      - RESEND_REPLY_TO=${RESEND_REPLY_TO:-contact@yourdomain.com}
+    mem_limit: 512m
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    networks:
+      - default
+      - talentsync-infra
+    restart: always
+
+  worker:
+    build:
+      context: .
+      dockerfile: apps/server/Dockerfile
+      target: production
+    container_name: uptime-worker-stage
+    command: node apps/server/dist/worker.js
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=${MONGODB_URI:-mongodb://mongo:27017/uptimemonitor-stage}
+      - REDIS_URI=${REDIS_URI:-redis://redis:6379}
+      - JWT_ACCESS_SECRET=${JWT_ACCESS_SECRET}
+      - JWT_REFRESH_SECRET=${JWT_REFRESH_SECRET}
+      - RESEND_API_KEY=${RESEND_API_KEY}
+      - RESEND_FROM_EMAIL=${RESEND_FROM_EMAIL:-contact@yourdomain.com}
+      - RESEND_REPLY_TO=${RESEND_REPLY_TO:-contact@yourdomain.com}
+      - APP_URL=${APP_URL:-https://uptime-stage.yourdomain.com}
+    mem_limit: 512m
+    networks:
+      - default
+      - talentsync-infra
+    restart: always
+
+  client:
+    build:
+      context: .
+      dockerfile: apps/client/Dockerfile
+      target: production
+      args:
+        VITE_API_BASE_URL: /api/v1
+    container_name: uptime-client-stage
+    ports:
+      - "3010:80"
+    depends_on:
+      api:
+        condition: service_healthy
+    mem_limit: 128m
+    networks:
+      - default
+    restart: always
