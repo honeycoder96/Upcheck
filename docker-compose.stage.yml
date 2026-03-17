@@ -66,12 +66,11 @@ services:
       args:
         VITE_API_BASE_URL: /api/v1
     container_name: uptime-client-stage
-    ports:
-      - "3010:80"
     depends_on:
       api:
         condition: service_healthy
     mem_limit: 128m
     networks:
       - default
+      - talentsync-infra
     restart: always
