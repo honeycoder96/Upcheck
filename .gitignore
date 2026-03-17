@@ -49,10 +49,6 @@ Thumbs.db
 .claude/
 spec/
 
-# ── Internal docs (not for public consumption) ────────────────────────────────
-competititors.md
-project_spec.md
-
 # ── Testing ───────────────────────────────────────────────────────────────────
 coverage/
 .nyc_output/

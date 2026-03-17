@@ -18,11 +18,11 @@ services:
       - JWT_REFRESH_SECRET=${JWT_REFRESH_SECRET}
       - JWT_ACCESS_EXPIRY=${JWT_ACCESS_EXPIRY:-15m}
       - JWT_REFRESH_EXPIRY=${JWT_REFRESH_EXPIRY:-7d}
-      - CORS_ORIGIN=${CORS_ORIGIN:-https://uptime.yourdomain.com}
-      - APP_URL=${APP_URL:-https://uptime.yourdomain.com}
+      - CORS_ORIGIN=${CORS_ORIGIN:-https://uptime.honeyhimself.com}
+      - APP_URL=${APP_URL:-https://uptime.honeyhimself.com}
       - RESEND_API_KEY=${RESEND_API_KEY}
-      - RESEND_FROM_EMAIL=${RESEND_FROM_EMAIL:-contact@yourdomain.com}
-      - RESEND_REPLY_TO=${RESEND_REPLY_TO:-contact@yourdomain.com}
+      - RESEND_FROM_EMAIL=${RESEND_FROM_EMAIL:-contact@honeyhimself.com}
+      - RESEND_REPLY_TO=${RESEND_REPLY_TO:-contact@honeyhimself.com}
       - SEED_ORG_NAME=${SEED_ORG_NAME}
       - SEED_ORG_SLUG=${SEED_ORG_SLUG}
       - SEED_USER_EMAIL=${SEED_USER_EMAIL}
@@ -53,9 +53,9 @@ services:
       - JWT_ACCESS_SECRET=${JWT_ACCESS_SECRET}
       - JWT_REFRESH_SECRET=${JWT_REFRESH_SECRET}
       - RESEND_API_KEY=${RESEND_API_KEY}
-      - RESEND_FROM_EMAIL=${RESEND_FROM_EMAIL:-alerts@yourdomain.com}
-      - RESEND_REPLY_TO=${RESEND_REPLY_TO:-support@yourdomain.com}
-      - APP_URL=${APP_URL:-https://uptime.yourdomain.com}
+      - RESEND_FROM_EMAIL=${RESEND_FROM_EMAIL:-contact@honeyhimself.com}
+      - RESEND_REPLY_TO=${RESEND_REPLY_TO:-contact@honeyhimself.com}
+      - APP_URL=${APP_URL:-https://uptime.honeyhimself.com}
     mem_limit: 512m
     networks:
       - default
