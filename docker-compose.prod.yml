@@ -1,6 +1,8 @@
 networks:
   talentsync-infra:
     external: true
+  dokploy-network:
+    external: true
 
 services:
   api:
@@ -77,4 +79,5 @@ services:
     networks:
       - default
       - talentsync-infra
+      - dokploy-network
     restart: always
