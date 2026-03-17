@@ -18,6 +18,10 @@ import { statusRouter } from './routes/status.router';
 
 const app = express();
 
+// Trust the first proxy (Traefik) so req.ip reflects the real client IP
+// forwarded via X-Forwarded-For from Traefik → nginx → Express
+app.set('trust proxy', 1);
+
 // 1. Request logger
 app.use(requestLogger);
 

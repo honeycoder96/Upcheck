@@ -11,6 +11,7 @@ export function requestLogger(req: Request, res: Response, next: NextFunction): 
       path: req.path,
       status: res.statusCode,
       durationMs: duration,
+      ip: req.ip,
     });
   });
 
