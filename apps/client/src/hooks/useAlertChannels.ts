@@ -35,7 +35,7 @@ export function useAlertChannels() {
 export function useCreateAlertChannel() {
   const qc = useQueryClient()
   return useMutation({
-    mutationFn: (data: { type: 'email' | 'webhook'; config: AlertChannelConfig; monitorIds: string[] }) =>
+    mutationFn: (data: { type: 'email' | 'webhook' | 'telegram' | 'slack'; config: AlertChannelConfig; monitorIds: string[] }) =>
       apiClient.post('/alert-channels', data),
     onSuccess: () => qc.invalidateQueries({ queryKey: ['alert-channels'] }),
   })

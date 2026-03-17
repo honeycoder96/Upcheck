@@ -275,7 +275,7 @@ function ChannelSheet({ open, onOpenChange, editing }: ChannelSheetProps) {
                   id="ch-bot-token"
                   type="password"
                   value={botToken}
-                  onChange={(e) => { setBotToken(e.target.value); resetTelegramTest() }}
+                  onChange={(e) => { setBotToken(e.target.value); setTelegramTested(false) }}
                   placeholder="123456789:ABCdefGHIjklMNOpqrSTUvwxYZ"
                   className={INPUT_CLASS}
                   autoComplete="off"
@@ -289,7 +289,7 @@ function ChannelSheet({ open, onOpenChange, editing }: ChannelSheetProps) {
                   id="ch-chat-id"
                   type="text"
                   value={chatId}
-                  onChange={(e) => { setChatId(e.target.value); resetTelegramTest() }}
+                  onChange={(e) => { setChatId(e.target.value); setTelegramTested(false) }}
                   placeholder="123456789  or  -987654321 for groups"
                   className={INPUT_CLASS}
                 />
