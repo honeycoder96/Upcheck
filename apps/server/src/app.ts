@@ -20,7 +20,7 @@ const app = express();
 
 // Trust the first proxy (Traefik) so req.ip reflects the real client IP
 // forwarded via X-Forwarded-For from Traefik → nginx → Express
-app.set('trust proxy', 1);
+app.set('trust proxy', 2);
 
 // 1. Request logger
 app.use(requestLogger);
